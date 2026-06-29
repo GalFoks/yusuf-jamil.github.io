@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Yusuf Jamil — Business & Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEEE6;
+    --paper-card:#FAFAF5;
+    --ink:#15213B;
+    --ink-soft:#4A5571;
+    --line:#C9CCBE;
+    --line-strong:#A9AD9B;
+    --amber:#D98E2B;
+    --amber-deep:#B5701A;
+    --teal:#2F6F62;
+    --teal-soft:#E4EDE9;
+    --red-soft:#A1483A;
+    --max-w:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+    background-image:repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 38px,
+      rgba(21,33,59,0.035) 39px
+    );
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:var(--max-w); margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; letter-spacing:-0.01em;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:var(--teal);
+    display:inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,238,230,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.06em;
+    border:1px solid var(--ink);
+    padding:4px 9px;
+    border-radius:3px;
+  }
+  .navlinks{display:flex; gap:26px; font-size:13.5px; font-weight:500;}
+  .navlinks a{position:relative; padding:4px 0; color:var(--ink-soft);}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--amber); transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navtoggle{display:none;}
+
+  @media (max-width:720px){
+    .navlinks{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:64px 0 0;}
+  .hero-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:40px;
+    flex-wrap:wrap;
+  }
+  .hero-id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    text-align:right;
+    border:1px solid var(--line-strong);
+    padding:10px 14px;
+    border-radius:4px;
+    background:var(--paper-card);
+    line-height:1.7;
+    min-width:190px;
+  }
+  .hero-id b{color:var(--ink); font-weight:600;}
+
+  h1.name{font-size:clamp(36px,5.6vw,58px); font-weight:600; line-height:1.04;}
+  .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:16px;
+    color:var(--amber-deep);
+    margin-top:10px;
+    font-weight:500;
+  }
+  .bio{
+    max-width:640px;
+    margin-top:22px;
+    font-size:16.5px;
+    color:var(--ink-soft);
+  }
+
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:26px;
+  }
+  .pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    border:1px solid var(--line-strong);
+    border-radius:20px;
+    padding:7px 14px;
+    background:var(--paper-card);
+    transition:border-color .2s, background .2s, transform .15s;
+  }
+  .pill:hover{border-color:var(--ink); background:#fff; transform:translateY(-1px);}
+
+  /* KPI ticker — signature element */
+  .kpi-strip{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .kpi{
+    padding:22px 18px 20px;
+    border-right:1px solid var(--line);
+    position:relative;
+  }
+  .kpi:last-child{border-right:none;}
+  .kpi-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:clamp(22px,3vw,30px);
+    font-weight:600;
+    color:var(--ink);
+    display:flex; align-items:baseline; gap:4px;
+  }
+  .kpi-num .unit{font-size:14px; color:var(--amber-deep); font-weight:600;}
+  .kpi-label{
+    margin-top:8px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+  .kpi::before{
+    content:""; position:absolute; left:18px; bottom:0; height:3px; width:26px;
+    background:var(--amber);
+  }
+  @media (max-width:720px){
+    .kpi-strip{grid-template-columns:repeat(2,1fr);}
+    .kpi:nth-child(2){border-right:none;}
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:78px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .sec-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px; margin-bottom:38px;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,34px);}
+  .sec-count{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    border:1px solid var(--line);
+  }
+  .skill-col{
+    padding:22px 20px;
+    border-right:1px solid var(--line);
+  }
+  .skill-col:last-child{border-right:none;}
+  .skill-col h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:14px;
+    font-weight:600;
+  }
+  .skill-col ul{list-style:none; margin:0; padding:0; font-size:14px; color:var(--ink);}
+  .skill-col li{padding:6px 0; border-top:1px dashed var(--line);}
+  .skill-col li:first-child{border-top:none;}
+  @media (max-width:860px){
+    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .skill-col:nth-child(2){border-right:none;}
+    .skill-col:nth-child(3),.skill-col:nth-child(4){border-top:1px solid var(--line);}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border:1px solid var(--line);
+    background:var(--paper-card);
+    margin-bottom:26px;
+    border-radius:4px;
+    overflow:hidden;
+    opacity:0; transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .project.visible{opacity:1; transform:translateY(0);}
+  .proj-head{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    padding:24px 26px 16px;
+    flex-wrap:wrap;
+  }
+  .proj-head h3{font-size:21px; font-weight:600; max-width:540px;}
+  .proj-period{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-top:6px;}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:7px; padding:0 26px 18px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    border:1px solid var(--line-strong);
+    border-radius:3px;
+    padding:3px 8px;
+    color:var(--ink-soft);
+  }
+  .proj-body{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .proj-block{padding:18px 22px; border-right:1px solid var(--line);}
+  .proj-block:last-child{border-right:none;}
+  .proj-block h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--amber-deep);
+    margin:0 0 8px;
+    font-weight:600;
+  }
+  .proj-block p{margin:0; font-size:13.8px; color:var(--ink);}
+  @media (max-width:860px){
+    .proj-body{grid-template-columns:1fr;}
+    .proj-block{border-right:none; border-bottom:1px solid var(--line);}
+    .proj-block:last-child{border-bottom:none;}
+  }
+  .proj-footer{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 26px;
+    border-top:1px solid var(--line);
+    background:rgba(21,33,59,0.025);
+    flex-wrap:wrap; gap:10px;
+  }
+  .metric-highlight{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--teal);
+    font-weight:600;
+  }
+  .repo-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink);
+    border-bottom:1px solid var(--amber);
+    padding-bottom:2px;
+    transition:color .2s;
+  }
+  .repo-link:hover{color:var(--amber-deep);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline-item{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:first-child{border-top:none;}
+  .tl-date{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);}
+  .tl-content h3{font-size:18px; font-weight:600;}
+  .tl-org{font-size:14px; color:var(--teal); margin-top:3px; font-weight:500;}
+  .tl-content ul{margin:14px 0 0; padding-left:18px; font-size:14.5px; color:var(--ink);}
+  .tl-content li{margin-bottom:8px;}
+  @media (max-width:640px){
+    .timeline-item{grid-template-columns:1fr;}
+  }
+
+  /* ---------- EDUCATION / CERTS ---------- */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line);}
+  .edu-col{padding:26px 28px;}
+  .edu-col:first-child{border-right:1px solid var(--line);}
+  .edu-col h3{font-size:18px; margin-bottom:4px;}
+  .edu-meta{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft); margin-bottom:14px;}
+  .edu-col p{font-size:14px; color:var(--ink-soft); margin:0;}
+  .cert-list{list-style:none; margin:0; padding:0; font-size:13.8px;}
+  .cert-list li{padding:8px 0; border-top:1px dashed var(--line); display:flex; justify-content:space-between; gap:10px;}
+  .cert-list li:first-child{border-top:none;}
+  .cert-org{color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; font-size:12px; white-space:nowrap;}
+  @media (max-width:720px){
+    .edu-grid{grid-template-columns:1fr;}
+    .edu-col:first-child{border-right:none; border-bottom:1px solid var(--line);}
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:48px 0 60px;}
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
+  }
+  footer h2{font-size:clamp(28px,4vw,40px); max-width:480px;}
+  .footer-contact{display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:13.5px;}
+  .footer-contact a:hover{color:var(--amber-deep);}
+  .langs{margin-top:30px; font-size:13px; color:var(--ink-soft);}
+  .back-top{
+    margin-top:40px;
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  /* reveal helper for sections */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+    .reveal, .project{opacity:1 !important; transform:none !important;}
+  }
+
+  a:focus-visible, .pill:focus-visible, .repo-link:focus-visible{
+    outline:2px solid var(--teal); outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">MYJ</div>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow">Record 001 — Candidate Profile</div>
+        <h1 class="name">Muhammad Yusuf<br>Jamil</h1>
+        <div class="role">Business &amp; Data Analyst</div>
+        <p class="bio">Economics graduate from Universitas Brawijaya with four end-to-end data
+          projects spanning causal inference, machine learning, real-time pipelines, and
+          customer analytics. I turn raw transactional data into business recommendations —
+          and I'm looking for a Data Analyst role at a startup where that combination earns its keep.</p>
+        <div class="contact-row">
+          <a class="pill" href="mailto:yusufjamil316@gmail.com">yusufjamil316@gmail.com</a>
+          <a class="pill" href="tel:+6285748038386">+62 857-4803-8386</a>
+          <a class="pill" href="https://www.linkedin.com/in/muhammad-yusuf-jamil-4b5345248/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="pill" href="https://github.com/GalFoks" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="hero-id">
+        LOCATION<br><b>Depok, Indonesia</b><br><br>
+        STATUS<br><b>Open to work</b><br><br>
+        FOCUS<br><b>Startup / Data</b>
+      </div>
+    </div>
+
+    <div class="kpi-strip" id="kpi-strip">
+      <div class="kpi">
+        <div class="kpi-num"><span class="count" data-target="0.83" data-decimals="2">0.00</span></div>
+        <div class="kpi-label">ROC-AUC — Telco churn model, 7,043 customers</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num"><span class="count" data-target="1873" data-decimals="0">0</span><span class="unit">sellers</span></div>
+        <div class="kpi-label">Panel size — causal study, 112,101 transactions</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num"><span class="count" data-target="87" data-decimals="0">0</span><span class="unit">%</span></div>
+        <div class="kpi-label">Net revenue from the top 39% B2B customer segment</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num"><span class="count" data-target="82" data-decimals="0">0</span><span class="unit">%</span></div>
+        <div class="kpi-label">Recall on fraudulent transactions, real-time pipeline</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Skills</h2>
+      <span class="sec-count">// stack</span>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-col">
+        <h3>Analysis</h3>
+        <ul>
+          <li>SQL (MySQL) &amp; data cleaning</li>
+          <li>Python — pandas, scikit-learn</li>
+          <li>statsmodels</li>
+          <li>Microsoft Excel — pivot tables, macros</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Modelling</h3>
+        <ul>
+          <li>XGBoost, K-Means, SMOTE</li>
+          <li>OLS, IV/2SLS</li>
+          <li>Difference-in-Differences</li>
+          <li>SHAP &amp; LIME explainability</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Visualization</h3>
+        <ul>
+          <li>Power BI</li>
+          <li>Tableau</li>
+          <li>Plotly Dash</li>
+          <li>Streamlit</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Professional</h3>
+        <ul>
+          <li>Business process analysis</li>
+          <li>Project management &amp; planning</li>
+          <li>Communication &amp; collaboration</li>
+          <li>Microsoft Office</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Projects</h2>
+      <span class="sec-count">// 4 case files, June 2026</span>
+    </div>
+
+    <div class="project">
+      <div class="proj-head">
+        <h3>Customer Churn Prediction — End-to-End ML Pipeline</h3>
+        <div class="proj-period">JUN 2026</div>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">SMOTE</span>
+        <span class="tag">SHAP</span><span class="tag">LIME</span><span class="tag">FastAPI</span><span class="tag">Streamlit</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-block">
+          <h4>Problem</h4>
+          <p>A telecom provider had no systematic way to flag at-risk customers, and a default 50% cutoff ignored that missing a churner costs roughly 3x more than a false alarm (Rp 500K vs. Rp 150K).</p>
+        </div>
+        <div class="proj-block">
+          <h4>Approach</h4>
+          <p>EDA and 8 engineered features (incl. a contract risk score and a high-charge-new-customer flag) on 7,043 Telco customers, SMOTE-balanced XGBoost tuned via GridSearchCV, and a decision threshold re-optimized to 0.32 against real cost trade-offs.</p>
+        </div>
+        <div class="proj-block">
+          <h4>Result</h4>
+          <p>88% recall on churners at ≈ Rp 80.6M total operational cost; SHAP/LIME pointed to contract type and tenure as the dominant drivers, shipped via a FastAPI endpoint and a Streamlit dashboard.</p>
+        </div>
+      </div>
+      <div class="proj-footer">
+        <span class="metric-highlight">88% Recall · 0.83 AUC</span>
+        <a class="repo-link" href="https://github.com/GalFoks/customer-churn-prediction" target="_blank" rel="noopener">github.com/GalFoks/customer-churn-prediction ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="proj-head">
+        <h3>Causal Impact of Platform Discounts on Seller Margin</h3>
+        <div class="proj-period">JUN 2026</div>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Python</span><span class="tag">SQL · MySQL</span><span class="tag">OLS</span>
+        <span class="tag">IV/2SLS</span><span class="tag">DiD</span><span class="tag">statsmodels</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-block">
+          <h4>Problem</h4>
+          <p>Does funding seller discounts actually erode the margin sellers keep — or is the platform avoiding a relationship that doesn't exist?</p>
+        </div>
+        <div class="proj-block">
+          <h4>Approach</h4>
+          <p>A layered causal-inference pipeline — OLS with clustered standard errors, a Hausman endogeneity test, IV/2SLS with two instruments, and DiD with a placebo check — on 1,873 active sellers across 112,101 transactions from Olist's Brazilian e-commerce data, plus a transparently documented synthetic discount layer.</p>
+        </div>
+        <div class="proj-block">
+          <h4>Result</h4>
+          <p>No statistically significant evidence that discount intensity erodes net margin (2SLS β=+0.0021, p=0.575; DiD β=+0.053, p=0.537). Placebo test passed (p=0.74), confirming the design held up — delivered with a constrained-optimization pricing model and a 26-page report.</p>
+        </div>
+      </div>
+      <div class="proj-footer">
+        <span class="metric-highlight">1,873 Sellers · No Causal Effect Found</span>
+        <a class="repo-link" href="https://github.com/GalFoks/marketplace-discount-seller-margin-causal" target="_blank" rel="noopener">github.com/GalFoks/marketplace-discount-seller-margin-causal ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="proj-head">
+        <h3>B2B Customer Cohort Analysis &amp; CLV Optimization</h3>
+        <div class="proj-period">JUN 2026</div>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Python</span><span class="tag">SQL · MySQL</span><span class="tag">K-Means</span>
+        <span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Plotly Dash</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-block">
+          <h4>Problem</h4>
+          <p>With over a million wholesale transaction rows on file, which customers actually deserve the marketing budget?</p>
+        </div>
+        <div class="proj-block">
+          <h4>Approach</h4>
+          <p>SQL window functions for cohort retention plus Python RFM features and Silhouette-validated K-Means clustering, run on the 1M+ row UCI "Online Retail II" dataset to segment wholesale customers by behavior.</p>
+        </div>
+        <div class="proj-block">
+          <h4>Result</h4>
+          <p>A 39% "Loyal/Champions" segment generates ≈ 87% of net revenue; recommended an early-access launch for a new premium line targeting the top 33% of customers responsible for ≈ 77% of historical revenue. Delivered via Plotly Dash plus companion Power BI / Tableau dashboards.</p>
+        </div>
+      </div>
+      <div class="proj-footer">
+        <span class="metric-highlight">87% Revenue from Top 39% Segment</span>
+        <a class="repo-link" href="https://github.com/GalFoks/b2b-cohort-clv-optimization" target="_blank" rel="noopener">github.com/GalFoks/b2b-cohort-clv-optimization ↗</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="proj-head">
+        <h3>Real-Time Fraud Detection System</h3>
+        <div class="proj-period">JUN 2026</div>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Apache Kafka</span><span class="tag">PySpark</span><span class="tag">XGBoost</span><span class="tag">Python</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-block">
+          <h4>Problem</h4>
+          <p>Card fraud needs catching in milliseconds, not in next month's report.</p>
+        </div>
+        <div class="proj-block">
+          <h4>Approach</h4>
+          <p>A simulated real-time pipeline: a Kafka producer streams credit-card transactions, a PySpark consumer scores them with a trained XGBoost classifier, with engineered behavioral features — merchant-customer distance, rolling transaction velocity per card — and class imbalance handled via scale_pos_weight.</p>
+        </div>
+        <div class="proj-block">
+          <h4>Result</h4>
+          <p>82% recall on fraudulent transactions while keeping false positives low enough to avoid unnecessary customer friction.</p>
+        </div>
+      </div>
+      <div class="proj-footer">
+        <span class="metric-highlight">82% Recall on Fraud</span>
+        <a class="repo-link" href="https://github.com/GalFoks/fraud-detection-system" target="_blank" rel="noopener">github.com/GalFoks/fraud-detection-system ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Experience</h2>
+      <span class="sec-count">// field work</span>
+    </div>
+    <div class="reveal">
+      <div class="timeline-item">
+        <div class="tl-date">OCT 2024 — FEB 2025</div>
+        <div class="tl-content">
+          <h3>Intern, Distribution Statistics Division</h3>
+          <div class="tl-org">Badan Pusat Statistik (BPS), Kabupaten Malang</div>
+          <ul>
+            <li>Conducted field data collection for distribution and trade statistics surveys, maintaining the accuracy standards required for official government reporting across multiple survey cycles.</li>
+            <li>Processed and validated survey results in BPS data systems, supporting downstream statistical analysis of regional distribution indicators; corrected data-entry errors that improved the completeness rate of submitted records.</li>
+            <li>Gained hands-on exposure to official statistics methodology, data validation protocols, and quality control standards aligned with national BPS guidelines.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Education &amp; Certifications</h2>
+      <span class="sec-count">// credentials</span>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu-col">
+        <h3>Bachelor of Economics</h3>
+        <div class="edu-meta">Universitas Brawijaya · Malang, Indonesia · Aug 2022 – May 2026</div>
+        <p>Relevant coursework: Microeconomics, Entrepreneurship, Statistics, Econometrics.</p>
+      </div>
+      <div class="edu-col">
+        <h3 style="font-size:14px; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono', monospace; color:var(--teal); margin-bottom:14px;">Certifications &amp; Training</h3>
+        <ul class="cert-list">
+          <li><span>Intro to Data Analytics</span><span class="cert-org">RevoU, 2026</span></li>
+          <li><span>Business Analysis &amp; Process Management</span><span class="cert-org">Coursera, 2024</span></li>
+          <li><span>Relationship Management &amp; Business Development</span><span class="cert-org">Starweaver, 2024</span></li>
+          <li><span>Project Management Tracker (Excel)</span><span class="cert-org">Coursera, 2024</span></li>
+          <li><span>Google Analytics for Beginners</span><span class="cert-org">Google, 2024</span></li>
+          <li><span>Microsoft Office Desktop</span><span class="cert-org">Trust Training, 2026</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-row reveal">
+      <h2>Let's talk about what your data isn't telling you yet.</h2>
+      <div class="footer-contact">
+        <a href="mailto:yusufjamil316@gmail.com">yusufjamil316@gmail.com</a>
+        <a href="tel:+6285748038386">+62 857-4803-8386</a>
+        <a href="https://www.linkedin.com/in/muhammad-yusuf-jamil-4b5345248/" target="_blank" rel="noopener">linkedin.com/in/muhammad-yusuf-jamil</a>
+        <a href="https://github.com/GalFoks" target="_blank" rel="noopener">github.com/GalFoks</a>
+      </div>
+    </div>
+    <div class="langs reveal">Languages — Indonesian (Native) · English (Intermediate) · Depok, Indonesia</div>
+    <a class="back-top" href="#home">↑ back to top</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll-reveal for sections and project cards
+  const revealEls = document.querySelectorAll('.reveal, .project');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>obs.observe(el));
+
+  // KPI count-up, triggered once on load
+  function animateCount(el){
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals, 10);
+    const duration = 1100;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min((now-start)/duration, 1);
+      const eased = 1 - Math.pow(1-p, 3);
+      const val = target * eased;
+      el.textContent = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString('en-US');
+      if(p < 1) requestAnimationFrame(tick);
+      else el.textContent = decimals > 0 ? target.toFixed(decimals) : Math.round(target).toLocaleString('en-US');
+    }
+    requestAnimationFrame(tick);
+  }
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.count').forEach(el=>{
+    if(prefersReduced){
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals,10);
+      el.textContent = decimals>0 ? target.toFixed(decimals) : Math.round(target).toLocaleString('en-US');
+    } else {
+      setTimeout(()=>animateCount(el), 250);
+    }
+  });
+</script>
+
+</body>
+</html>
